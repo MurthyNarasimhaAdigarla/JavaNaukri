@@ -66,7 +66,7 @@ public class JavaNaukri {
             WebElement submit = driver.findElement(By.xpath("//button[text()='Login']"));
             submit.click();
 
-            Thread.sleep(3000);
+            Thread.sleep(2000);
 
 
             //Updating profile and resume
