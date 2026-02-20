@@ -101,7 +101,7 @@ public class JavaNaukri {
             WebElement searchPlaceholder = driver.findElement(By.xpath("//span[text()='Search jobs here']"));
             searchPlaceholder.click();
             WebElement searchAndEnterKeyword = driver.findElement(By.xpath("//input[@placeholder='Enter keyword / designation / companies']"));
-            searchAndEnterKeyword.sendKeys("Selenium Automation Testing. ");
+            searchAndEnterKeyword.sendKeys("Selenium Automation Testing.");
 
 
             // Click the input field to open dropdown
