@@ -66,7 +66,7 @@ public class JavaNaukri {
             WebElement submit = driver.findElement(By.xpath("//button[text()='Login']"));
             submit.click();
 
-            Thread.sleep(3000);
+            Thread.sleep(2000);
 
 
             //Updating profile and resume
@@ -79,6 +79,7 @@ public class JavaNaukri {
             // Click the "Update" link
             WebElement updateLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@class='collection-item typ-14Medium']//a[text()='Update']")));
             updateLink.click();
+            System.out.println("Resume update button clicked");
 
 //            // Wait for the file input to appear
 //            WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
