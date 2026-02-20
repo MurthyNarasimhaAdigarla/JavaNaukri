@@ -18,7 +18,7 @@ import java.time.Duration;
 import java.util.Set;
 
 
-public class JavaNaukri {
+public class JavaNaukriTest {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -69,9 +69,8 @@ public class JavaNaukri {
 
             Thread.sleep(2000);
 
-
             //Updating profile and resume
-           // driver.navigate().back();
+            // driver.navigate().back();
             WebElement viewProfileLink = driver.findElement(By.linkText("View profile"));
             viewProfileLink.click();
 
@@ -98,11 +97,8 @@ public class JavaNaukri {
 //            fileInput.sendKeys(resumePath);
 //            System.out.println("Resume uploaded successfully from project folder");
 
-
             // Locate the file input directly (even if hidden)
-            WebElement fileInput = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']"))
-            );
+            WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
 
 // Build the absolute path dynamically from your project folder
             String resumePath = System.getProperty("user.dir") + "/src/main/resources/Narasimha_Murthy_QA_Sdet.pdf";
@@ -112,15 +108,12 @@ public class JavaNaukri {
 
             System.out.println("Resume uploaded successfully from project folder");
 
-
-
             //Seraching Jobs
 
             WebElement searchPlaceholder = driver.findElement(By.xpath("//span[text()='Search jobs here']"));
             searchPlaceholder.click();
             WebElement searchAndEnterKeyword = driver.findElement(By.xpath("//input[@placeholder='Enter keyword / designation / companies']"));
             searchAndEnterKeyword.sendKeys("Selenium Automation Testing.");
-
 
             // Click the input field to open dropdown
             WebElement experienceInput = wait.until(ExpectedConditions.elementToBeClickable(By.id("experienceDD")));
@@ -130,9 +123,7 @@ public class JavaNaukri {
             WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[normalize-space(text())='10 years']")));
             option.click();
 
-
             WebElement locationInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[placeholder='Enter location']")));
-
 
             locationInput.clear();
             locationInput.sendKeys("Hyderabad");
@@ -155,7 +146,7 @@ public class JavaNaukri {
 //            WebElement logoutBtn =
 //                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Logout']")));
 //            logoutBtn.click();
-           driver.quit();
+            driver.quit();
         }
     }
 }
