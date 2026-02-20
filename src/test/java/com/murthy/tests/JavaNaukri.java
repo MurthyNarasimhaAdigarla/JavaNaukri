@@ -77,26 +77,41 @@ public class JavaNaukri {
 
             Thread.sleep(3000);
 
-            // Click the "Update" link
-            WebElement updateLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@class='collection-item typ-14Medium']//a[text()='Update']")));
-            updateLink.click();
-            System.out.println("Resume update button clicked");
-
-//            // Wait for the file input to appear
-//            WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
+//            // Click the "Update" link
+//            WebElement updateLink = wait.until(
+//                    ExpectedConditions.elementToBeClickable(
+//                            By.xpath("//li[@class='collection-item typ-14Medium']//a[text()='Update']")
+//                    )
+//            );
+//            updateLink.click();
+//            System.out.println("Resume update button clicked");
 //
-//            // Upload the PDF resume
-//            fileInput.sendKeys("C:\\Users\\murth\\IdeaProjects\\JavaNaukri\\src\\main\\resources\\Narasimha_Murthy_QA_Sdet.pdf");
+//// Locate the file input (hidden in DOM)
+//            WebElement fileInput = wait.until(
+//                    ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']"))
+//            );
 //
-//            driver.switchTo().defaultContent();
+//// Build the absolute path to the resume inside your project folder
+//            String resumePath = System.getProperty("user.dir") + "/src/main/resources/Narasimha_Murthy_QA_Sdet.pdf";
+//
+//// Upload the file directly (no OS dialog needed)
+//            fileInput.sendKeys(resumePath);
+//            System.out.println("Resume uploaded successfully from project folder");
 
-            // Locate the file input (hidden in DOM)
+
+            // Locate the file input directly (even if hidden)
             WebElement fileInput = wait.until(
                     ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']"))
             );
 
-            // Upload the file directly (no OS dialog needed)
-            fileInput.sendKeys("C:\\Users\\murth\\IdeaProjects\\JavaNaukri\\src\\main\\resources\\Narasimha_Murthy_QA_Sdet.pdf");
+// Build the absolute path dynamically from your project folder
+            String resumePath = System.getProperty("user.dir") + "/src/main/resources/Narasimha_Murthy_QA_Sdet.pdf";
+
+// Upload the file directly (no OS dialog needed)
+            fileInput.sendKeys(resumePath);
+
+            System.out.println("Resume uploaded successfully from project folder");
+
 
 
             //Seraching Jobs
@@ -140,7 +155,7 @@ public class JavaNaukri {
 //            WebElement logoutBtn =
 //                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Logout']")));
 //            logoutBtn.click();
-           // driver.quit();
+           driver.quit();
         }
     }
 }
