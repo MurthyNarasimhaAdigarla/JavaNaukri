@@ -51,10 +51,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <!-- Use 4.0.0-beta-3 for Java 25 support -->
-                <version>4.0.0-beta-3</version>
+                <version>3.11.0</version>
                 <configuration>
-                    <release>25</release>
+                    <release>21</release>
                 </configuration>
             </plugin>
 
