@@ -14,8 +14,6 @@
 
     <!-- ✅ Java version -->
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -34,16 +32,14 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.9.0</version>
-
         </dependency>
 
-        <!-- WebDriverManager (optional but recommended) -->
+        <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.7.0</version>
         </dependency>
-
 
     </dependencies>
 
@@ -52,13 +48,13 @@
         <plugins>
 
             <!-- Compiler Plugin -->
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <!-- Use 4.0.0-beta-3 for Java 25 support -->
+                <version>4.0.0-beta-3</version>
                 <configuration>
-                    <release>25</release>   <!-- Use release instead of source/target -->
+                    <release>25</release>
                 </configuration>
             </plugin>
 
@@ -68,15 +64,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-
-                    <!-- Tell Maven to use TestNG -->
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-
-                    <!-- Prevent module-path issues -->
                     <useModulePath>false</useModulePath>
-
                 </configuration>
             </plugin>
 
