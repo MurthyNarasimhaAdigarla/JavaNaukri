@@ -33,7 +33,7 @@ public class JavaNaukri {
     }
 
     @Test
-    public void JavaNaukri() {
+    public void Naukri_With_Java() {
 
         driver.get("https://www.naukri.com/");
 
