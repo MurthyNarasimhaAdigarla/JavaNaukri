@@ -99,14 +99,22 @@ public class JavaNaukriTest {
 
             // Locate the file input directly (even if hidden)
             WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
-
+            Thread.sleep(5000); // Wait for upload to complete (adjust as needed)
 // Build the absolute path dynamically from your project folder
             String resumePath = System.getProperty("user.dir") + "/src/main/resources/Narasimha_Murthy_QA_Sdet.pdf";
 
 // Upload the file directly (no OS dialog needed)
             fileInput.sendKeys(resumePath);
 
+
             System.out.println("Resume uploaded successfully from project folder");
+
+
+            //updting profile details
+//            WebElement editProfileBtn = wait.until(ExpectedConditions.elementToBeClickable
+//                        (By.xpath("span.edit.icon")));
+//            editProfileBtn.click();
+
 
             //Seraching Jobs
 
@@ -136,16 +144,16 @@ public class JavaNaukriTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown() throws InterruptedException {
 
         if (driver != null) {
+            Thread.sleep(3000);
 
-//            WebElement profileIcon =
-//                    wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[data-toggle='dropdown']")));
-//            profileIcon.click();
-//            WebElement logoutBtn =
-//                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Logout']")));
-//            logoutBtn.click();
+            WebElement profileIcon = wait.until( ExpectedConditions.elementToBeClickable
+                    (By.cssSelector("img.nI-gNb-icon-img")) ); profileIcon.click();
+            WebElement logoutBtn =
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@title='Logout']")));
+            logoutBtn.click();
             driver.quit();
         }
     }
