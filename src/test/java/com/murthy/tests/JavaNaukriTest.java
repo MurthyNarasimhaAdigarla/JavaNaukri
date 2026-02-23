@@ -76,30 +76,9 @@ public class JavaNaukriTest {
 
             Thread.sleep(3000);
 
-//            // Click the "Update" link
-//            WebElement updateLink = wait.until(
-//                    ExpectedConditions.elementToBeClickable(
-//                            By.xpath("//li[@class='collection-item typ-14Medium']//a[text()='Update']")
-//                    )
-//            );
-//            updateLink.click();
-//            System.out.println("Resume update button clicked");
-//
-//// Locate the file input (hidden in DOM)
-//            WebElement fileInput = wait.until(
-//                    ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']"))
-//            );
-//
-//// Build the absolute path to the resume inside your project folder
-//            String resumePath = System.getProperty("user.dir") + "/src/main/resources/Narasimha_Murthy_QA_Sdet.pdf";
-//
-//// Upload the file directly (no OS dialog needed)
-//            fileInput.sendKeys(resumePath);
-//            System.out.println("Resume uploaded successfully from project folder");
-
             // Locate the file input directly (even if hidden)
             WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
-            Thread.sleep(5000); // Wait for upload to complete (adjust as needed)
+
 // Build the absolute path dynamically from your project folder
             String resumePath = System.getProperty("user.dir") + "/src/main/resources/Narasimha_Murthy_QA_Sdet.pdf";
 
