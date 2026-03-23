@@ -1,6 +1,5 @@
 package com.murthy.tests;
 
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,12 +12,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
+import java.io.File;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Set;
 
 
-public class JavaNaukriTest {
+public class Narasimha_Naukri {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -33,7 +33,7 @@ public class JavaNaukriTest {
     }
 
     @Test
-    public void Naukri_With_Java() {
+    public void JavaNaukri() {
 
         driver.get("https://www.naukri.com/");
 
@@ -69,6 +69,7 @@ public class JavaNaukriTest {
 
             Thread.sleep(2000);
 
+
             //Updating profile and resume
             // driver.navigate().back();
             WebElement viewProfileLink = driver.findElement(By.linkText("View profile"));
@@ -76,23 +77,27 @@ public class JavaNaukriTest {
 
             Thread.sleep(3000);
 
-            // Locate the file input directly (even if hidden)
+            // Click the "Update" link
+//            WebElement updateLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@class='collection-item typ-14Medium']//a[text()='Update']")));
+//            updateLink.click();
+//            System.out.println("Resume update button clicked");
+
+
+            // Locate the file input (hidden in DOM)
             WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
 
-// Build the absolute path dynamically from your project folder
-            String resumePath = System.getProperty("user.dir") + "/src/main/resources/Narasimha_Murthy_QA_Sdet.pdf";
+            // Resolve the resource from the classpath
+            URL resource = getClass().getClassLoader().getResource("Narasimha_Murthy_QA_Sdet.pdf");
+            if (resource == null) {
+                throw new IllegalStateException("Resource not found in classpath!");
+            }
 
-// Upload the file directly (no OS dialog needed)
-            fileInput.sendKeys(resumePath);
+            // Convert to File and get absolute path
+            File file = new File(resource.toURI());
+            String absolutePath = file.getAbsolutePath();
 
-
-            System.out.println("Resume uploaded successfully from project folder");
-
-
-            //updting profile details
-//            WebElement editProfileBtn = wait.until(ExpectedConditions.elementToBeClickable
-//                        (By.xpath("span.edit.icon")));
-//            editProfileBtn.click();
+            // Upload the file
+            fileInput.sendKeys(absolutePath);
 
 
             //Seraching Jobs
@@ -102,6 +107,7 @@ public class JavaNaukriTest {
             WebElement searchAndEnterKeyword = driver.findElement(By.xpath("//input[@placeholder='Enter keyword / designation / companies']"));
             searchAndEnterKeyword.sendKeys("Selenium Automation Testing.");
 
+
             // Click the input field to open dropdown
             WebElement experienceInput = wait.until(ExpectedConditions.elementToBeClickable(By.id("experienceDD")));
             experienceInput.click();
@@ -110,7 +116,9 @@ public class JavaNaukriTest {
             WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[normalize-space(text())='10 years']")));
             option.click();
 
+
             WebElement locationInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[placeholder='Enter location']")));
+
 
             locationInput.clear();
             locationInput.sendKeys("Hyderabad");
@@ -126,15 +134,16 @@ public class JavaNaukriTest {
     public void tearDown() throws InterruptedException {
 
         if (driver != null) {
-            Thread.sleep(3000);
 
-            WebElement profileIcon = wait.until( ExpectedConditions.elementToBeClickable
-                    (By.cssSelector("img.nI-gNb-icon-img")) ); profileIcon.click();
-            WebElement logoutBtn =
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@title='Logout']")));
+            Thread.sleep(3000);
+            WebElement viewProfileLink = driver.findElement(By.xpath("//img[@alt='naukri user profile img']"));
+            viewProfileLink.click();
+            Thread.sleep(2000);
+
+            WebElement logoutBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@title='Logout']")));
+
             logoutBtn.click();
             driver.quit();
         }
     }
 }
-

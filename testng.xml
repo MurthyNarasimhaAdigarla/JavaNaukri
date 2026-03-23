@@ -3,7 +3,7 @@
 <suite name="Suite">
     <test name="Login Tests">
         <classes>
-            <class name="com.murthy.tests.JavaNaukriTest"/>
+            <class name="com.murthy.tests.Narasimha_Naukri"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
