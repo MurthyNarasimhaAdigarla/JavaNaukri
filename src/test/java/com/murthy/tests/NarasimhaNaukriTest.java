@@ -18,7 +18,7 @@ import java.time.Duration;
 import java.util.Set;
 
 
-public class Narasimha_Naukri {
+public class NarasimhaNaukriTest {
 
     WebDriver driver;
     WebDriverWait wait;
