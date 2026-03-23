@@ -10,7 +10,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
+import java.io.File;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Set;
 
@@ -68,32 +69,33 @@ public class JavaNaukri {
 
 
             //Updating profile and resume
-           // driver.navigate().back();
+            // driver.navigate().back();
             WebElement viewProfileLink = driver.findElement(By.linkText("View profile"));
             viewProfileLink.click();
 
             Thread.sleep(3000);
 
             // Click the "Update" link
-            WebElement updateLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@class='collection-item typ-14Medium']//a[text()='Update']")));
-            updateLink.click();
-            System.out.println("Resume update button clicked");
+//            WebElement updateLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@class='collection-item typ-14Medium']//a[text()='Update']")));
+//            updateLink.click();
+//            System.out.println("Resume update button clicked");
 
-//            // Wait for the file input to appear
-//            WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
-//
-//            // Upload the PDF resume
-//            fileInput.sendKeys("C:\\Users\\murth\\IdeaProjects\\JavaNaukri\\src\\main\\resources\\Narasimha_Murthy_QA_Sdet.pdf");
-//
-//            driver.switchTo().defaultContent();
 
             // Locate the file input (hidden in DOM)
-            WebElement fileInput = wait.until(
-                    ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']"))
-            );
+            WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
 
-            // Upload the file directly (no OS dialog needed)
-            fileInput.sendKeys("C:\\Users\\murth\\IdeaProjects\\JavaNaukri\\src\\main\\resources\\Narasimha_Murthy_QA_Sdet.pdf");
+            // Resolve the resource from the classpath
+            URL resource = getClass().getClassLoader().getResource("Narasimha_Murthy_QA_Sdet.pdf");
+            if (resource == null) {
+                throw new IllegalStateException("Resource not found in classpath!");
+            }
+
+            // Convert to File and get absolute path
+            File file = new File(resource.toURI());
+            String absolutePath = file.getAbsolutePath();
+
+            // Upload the file
+            fileInput.sendKeys(absolutePath);
 
 
             //Seraching Jobs
@@ -127,17 +129,19 @@ public class JavaNaukri {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown() throws InterruptedException {
 
         if (driver != null) {
 
-//            WebElement profileIcon =
-//                    wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[data-toggle='dropdown']")));
-//            profileIcon.click();
-//            WebElement logoutBtn =
-//                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Logout']")));
-//            logoutBtn.click();
-           // driver.quit();
+            Thread.sleep(3000);
+            WebElement viewProfileLink = driver.findElement(By.xpath("//img[@alt='naukri user profile img']"));
+            viewProfileLink.click();
+            Thread.sleep(2000);
+
+            WebElement logoutBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@title='Logout']")));
+
+            logoutBtn.click();
+            driver.quit();
         }
     }
 }
