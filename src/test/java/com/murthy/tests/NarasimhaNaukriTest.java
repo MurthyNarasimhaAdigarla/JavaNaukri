@@ -89,7 +89,7 @@ public class NarasimhaNaukriTest {
             // Resolve the resource from the classpath
             URL resource = getClass().getClassLoader().getResource("Narasimha Murthy -Senior Sdet.pdf");
             if (resource == null) {
-                throw new IllegalStateException("Resource not found in classpath!");
+                throw new IllegalStateException("Resource not found in classpath!!");
             }
 
             // Convert to File and get absolute path
