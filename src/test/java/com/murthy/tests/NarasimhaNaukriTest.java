@@ -87,7 +87,7 @@ public class NarasimhaNaukriTest {
             WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
 
             // Resolve the resource from the classpath
-            URL resource = getClass().getClassLoader().getResource("Narasimha Murthy -Senior Sdet.pdf");
+            URL resource = getClass().getClassLoader().getResource("Narasimha_Murthy_Senior_SDET_Resume_9_YOE.pdf");
             if (resource == null) {
                 throw new IllegalStateException("Resource not found in classpath!!");
             }
