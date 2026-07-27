@@ -9,16 +9,14 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/MurthyNarasimhaAdigarla/JavaNaukri.git'
             }
         }
-        stage('Build with Maven') {
+        stage('Compile Java') {
             steps {
-                // Build project with Maven
-                bat 'mvn clean compile'
+                bat 'javac NarasimhaNaukriTest.java'
             }
         }
         stage('Run Resume Upload') {
             steps {
-                // Run the compiled class from target directory
-                bat 'java -cp target\\classes com.murthy.tests.NarasimhaNaukriTest'
+                bat 'java NarasimhaNaukriTest'
             }
         }
     }
