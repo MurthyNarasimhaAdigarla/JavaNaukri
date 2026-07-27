@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        cron('H/30 * * * *')  // run every 30 minutes
+        cron('H/30 * * * *')  // every 30 minutes
     }
     stages {
         stage('Checkout') {
@@ -9,18 +9,12 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/MurthyNarasimhaAdigarla/JavaNaukri.git'
             }
         }
-        stage('Build') {
-            steps {
-                // Maven build step
-                bat 'mvn clean test'
-            }
-        }
         stage('Upload Resume') {
             steps {
-                // Run your script that uploads resume to Naukri
+                // Replace with your actual script
                 bat 'java -jar ResumeUploader.jar'
-                // OR if it’s Python:
-                // sh 'python upload_resume.py'
+                // OR if Python:
+                // bat 'python upload_resume.py'
             }
         }
     }
