@@ -11,13 +11,17 @@ pipeline {
         }
         stage('Compile Java') {
             steps {
-                bat 'javac NarasimhaNaukriTest.java'
+                bat 'javac src\\main\\java\\com\\murthy\\tests\\NarasimhaNaukriTest.java'
             }
         }
         stage('Run Resume Upload') {
             steps {
-                bat 'java NarasimhaNaukriTest'
+                bat 'java -cp src\\main\\java com.murthy.tests.NarasimhaNaukriTest'
             }
+            stage('Run Tests') {
+                        steps {
+                            bat 'mvn clean test'
+                        }
         }
     }
 }
