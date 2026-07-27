@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        cron('H/30 * * * *')  // every 30 minutes
+        cron('H/30 * * * *')  // run every 30 minutes
     }
     stages {
         stage('Checkout') {
@@ -9,11 +9,17 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/MurthyNarasimhaAdigarla/JavaNaukri.git'
             }
         }
-       stage('Upload Resume') {
-           steps {
-               bat 'java -jar target/ResumeUploader.jar'
-           }
-       }
-
+        stage('Build with Maven') {
+            steps {
+                // Build project with Maven
+                bat 'mvn clean compile'
+            }
+        }
+        stage('Run Resume Upload') {
+            steps {
+                // Run the compiled class from target directory
+                bat 'java -cp target\\classes com.murthy.tests.NarasimhaNaukriTest'
+            }
+        }
     }
 }
