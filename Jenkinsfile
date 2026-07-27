@@ -9,13 +9,11 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/MurthyNarasimhaAdigarla/JavaNaukri.git'
             }
         }
-        stage('Upload Resume') {
-            steps {
-                // Replace with your actual script
-                bat 'java -jar ResumeUploader.jar'
-                // OR if Python:
-                // bat 'python upload_resume.py'
-            }
-        }
+       stage('Upload Resume') {
+           steps {
+               bat 'java -jar target/ResumeUploader.jar'
+           }
+       }
+
     }
 }
