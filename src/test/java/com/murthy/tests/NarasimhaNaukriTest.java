@@ -59,10 +59,10 @@ public class NarasimhaNaukriTest {
         // Enter username and password
         try {
             WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Enter your active Email ID / Username']")));
-            email.sendKeys("murthynarasimha0401@gmail.com"); // replace with your email
+            email.sendKeys("suryaprakash0331@gmail.com"); // replace with your email
 
             WebElement password = driver.findElement(By.xpath("//input[@placeholder='Enter your password']"));
-            password.sendKeys("Jobskosam@01"); // replace with your password
+            password.sendKeys("Iloveprak@31"); // replace with your password
 
             WebElement submit = driver.findElement(By.xpath("//button[text()='Login']"));
             submit.click();
@@ -87,7 +87,7 @@ public class NarasimhaNaukriTest {
             WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@type='file']")));
 
             // Resolve the resource from the classpath
-            URL resource = getClass().getClassLoader().getResource("Narasimha Murthy -Senior Sdet.pdf");
+            URL resource = getClass().getClassLoader().getResource("Resume_2.doc");
             if (resource == null) {
                 throw new IllegalStateException("Resource not found in classpath!!");
             }
@@ -136,7 +136,7 @@ public class NarasimhaNaukriTest {
         if (driver != null) {
 
             Thread.sleep(3000);
-            WebElement viewProfileLink = driver.findElement(By.xpath("//img[@alt='naukri user profile img']"));
+            WebElement viewProfileLink = driver.findElement(By.xpath("//img[@alt='naukri user profile image']"));
             viewProfileLink.click();
             Thread.sleep(2000);
 
